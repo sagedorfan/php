@@ -16287,11 +16287,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0508f0359c22fdc459e494918cdd23af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FPController
-  moveSpeed: 5
+  moveSpeed: 50
   gravity: -9.81
   jumpHeight: 1.5
   cameraTransform: {fileID: 330585546}
-  lookSensitivity: 2
+  lookSensitivity: 0.5
   verticalLookLimit: 90
   bulletPrefab: {fileID: 0}
   gunPoint: {fileID: 0}
