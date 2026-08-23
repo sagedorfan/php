@@ -13,10 +13,6 @@ public class FPController : MonoBehaviour
     public Transform cameraTransform;
     public float lookSensitivity = 2f;
     public float verticalLookLimit = 90f;
-    [Header("Shooting")]
-    public GameObject bulletPrefab;
-    public Transform gunPoint;
-    public float bulletForce = 500f;
     [Header("Crouch Settings")]
     public float crouchHeight = 1f;
     public float standHeight = 2f;
