@@ -127,6 +127,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Dialogue"",
+                    ""type"": ""Button"",
+                    ""id"": ""f1d0e5a0-3931-49a1-bb11-220a0c17827d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -360,6 +369,28 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""Crouch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c54b4d0f-608c-45b9-ad77-9fa5f668a524"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dialogue"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""308f98ee-b129-44dd-b76e-77245b0bbf15"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";keyboard and mouse"",
+                    ""action"": ""Dialogue"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -400,6 +431,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_player_Look = m_player.FindAction("Look", throwIfNotFound: true);
         m_player_Jump = m_player.FindAction("Jump", throwIfNotFound: true);
         m_player_Crouch = m_player.FindAction("Crouch", throwIfNotFound: true);
+        m_player_Dialogue = m_player.FindAction("Dialogue", throwIfNotFound: true);
     }
 
     ~@Controls()
@@ -484,6 +516,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_player_Look;
     private readonly InputAction m_player_Jump;
     private readonly InputAction m_player_Crouch;
+    private readonly InputAction m_player_Dialogue;
     /// <summary>
     /// Provides access to input actions defined in input action map "player".
     /// </summary>
@@ -511,6 +544,10 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "player/Crouch".
         /// </summary>
         public InputAction @Crouch => m_Wrapper.m_player_Crouch;
+        /// <summary>
+        /// Provides access to the underlying input action "player/Dialogue".
+        /// </summary>
+        public InputAction @Dialogue => m_Wrapper.m_player_Dialogue;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -549,6 +586,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Crouch.started += instance.OnCrouch;
             @Crouch.performed += instance.OnCrouch;
             @Crouch.canceled += instance.OnCrouch;
+            @Dialogue.started += instance.OnDialogue;
+            @Dialogue.performed += instance.OnDialogue;
+            @Dialogue.canceled += instance.OnDialogue;
         }
 
         /// <summary>
@@ -572,6 +612,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Crouch.started -= instance.OnCrouch;
             @Crouch.performed -= instance.OnCrouch;
             @Crouch.canceled -= instance.OnCrouch;
+            @Dialogue.started -= instance.OnDialogue;
+            @Dialogue.performed -= instance.OnDialogue;
+            @Dialogue.canceled -= instance.OnDialogue;
         }
 
         /// <summary>
@@ -666,5 +709,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnCrouch(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Dialogue" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnDialogue(InputAction.CallbackContext context);
     }
 }
