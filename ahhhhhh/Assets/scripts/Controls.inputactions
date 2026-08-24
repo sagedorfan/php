@@ -286,22 +286,22 @@
                 },
                 {
                     "name": "",
-                    "id": "c54b4d0f-608c-45b9-ad77-9fa5f668a524",
-                    "path": "",
+                    "id": "308f98ee-b129-44dd-b76e-77245b0bbf15",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";keyboard and mouse",
                     "action": "Dialogue",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "308f98ee-b129-44dd-b76e-77245b0bbf15",
-                    "path": "<Keyboard>/e",
+                    "id": "c54b4d0f-608c-45b9-ad77-9fa5f668a524",
+                    "path": "",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";keyboard and mouse",
+                    "groups": "",
                     "action": "Dialogue",
                     "isComposite": false,
                     "isPartOfComposite": false
