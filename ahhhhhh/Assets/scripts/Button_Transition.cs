@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine;
 using UnityEngine.SceneManagement; //This is the scene manager, which will enable the button to transition to the next scene
 
 
