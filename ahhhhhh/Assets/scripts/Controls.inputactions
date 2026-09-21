@@ -50,6 +50,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "PickUp",
+                    "type": "Button",
+                    "id": "ec8faddd-2fda-4d2a-ae34-f697a3570739",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -287,7 +296,7 @@
                 {
                     "name": "",
                     "id": "308f98ee-b129-44dd-b76e-77245b0bbf15",
-                    "path": "<Keyboard>/e",
+                    "path": "<Keyboard>/p",
                     "interactions": "",
                     "processors": "",
                     "groups": ";keyboard and mouse",
@@ -297,12 +306,12 @@
                 },
                 {
                     "name": "",
-                    "id": "c54b4d0f-608c-45b9-ad77-9fa5f668a524",
-                    "path": "",
+                    "id": "faf186dd-8e65-41d9-8b34-c79be943bb0b",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Dialogue",
+                    "action": "PickUp",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
