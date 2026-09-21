@@ -15,6 +15,9 @@
     "m_CategoryData": [
         {
             "m_Id": "7069e6ab9ead4b4c9861e9ad93dfafb6"
+        },
+        {
+            "m_Id": "724be4dec0ea4e3997fb147457ff00d7"
         }
     ],
     "m_Nodes": [
@@ -455,6 +458,14 @@
             "m_Id": "a2ae87b335a94f4ab548ae0775293113"
         }
     ]
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.CategoryData",
+    "m_ObjectId": "724be4dec0ea4e3997fb147457ff00d7",
+    "m_Name": "Category",
+    "m_ChildObjectList": []
 }
 
 {
