@@ -492,7 +492,7 @@
     "m_ShaderOutputName": "InMinMax",
     "m_StageCapability": 3,
     "m_Value": {
-        "x": -1.0,
+        "x": -0.5,
         "y": 1.0
     },
     "m_DefaultValue": {
@@ -615,9 +615,9 @@
     "m_ShaderOutputName": "BaseColor",
     "m_StageCapability": 2,
     "m_Value": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0
+        "x": 0.2641509175300598,
+        "y": 0.2641509175300598,
+        "z": 0.2641509175300598
     },
     "m_DefaultValue": {
         "x": 0.5,
@@ -646,10 +646,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -890.0000610351563,
-            "y": -3.999990224838257,
-            "width": 209.33343505859376,
-            "height": 128.66668701171876
+            "x": -889.3333129882813,
+            "y": -1.3333358764648438,
+            "width": 209.33331298828126,
+            "height": 128.6666717529297
         }
     },
     "m_Slots": [
@@ -765,7 +765,7 @@
     "m_Hidden": false,
     "m_ShaderOutputName": "Power",
     "m_StageCapability": 3,
-    "m_Value": 5.0,
+    "m_Value": 1.0,
     "m_DefaultValue": 1.0,
     "m_Labels": [],
     "m_LiteralMode": false
