@@ -3,156 +3,82 @@ using UnityEngine.InputSystem;
 
 public class PickUp : MonoBehaviour
 {
-    public GameObject player;
-    public Transform holdPos;
-    public float pickUpRange = 5f;
-
-    [Tooltip("Layer used for pickup objects")]
-    public LayerMask interactableLayer;
+    public Transform holdPoint;
+    public float pickUpRange = 3f;
+    public LayerMask pickupLayer;
 
     private GameObject heldObject;
-    private bool canDrop = true;
-    private int layerNumber;
+    private Rigidbody heldRb;
 
-    void Start()
-    {
-        layerNumber = LayerMask.NameToLayer("StableLayer");
-    }
+    private bool originalGravity;
+    private bool originalKinematic;
+
 
     void Update()
     {
-        if (Mouse.current == null) return;
-
-        // Left mouse button = Pick Up / Drop
-        if (Mouse.current.leftButton.wasPressedThisFrame)
+        if (Keyboard.current != null &&
+            Keyboard.current.eKey.wasPressedThisFrame)
         {
             if (heldObject == null)
             {
-                TryPickUp();
+                PickUpObject();
             }
-            else if (canDrop)
+            else
             {
-                TryDrop();
+                DropObject();
             }
         }
     }
 
-    private bool TryFindInteractable(out Collider result)
+
+    void PickUpObject()
     {
         RaycastHit hit;
 
         if (Physics.Raycast(
             transform.position,
-            transform.TransformDirection(Vector3.forward),
+            transform.forward,
             out hit,
             pickUpRange,
-            interactableLayer))
+            pickupLayer))
         {
-            result = hit.collider;
-            return true;
-        }
+            Rigidbody rb = hit.collider.attachedRigidbody;
 
-        result = null;
-        return false;
-    }
+            if (rb != null)
+            {
+                heldObject = rb.gameObject;
+                heldRb = rb;
 
-    private void TryPickUp()
-    {
-        if (!TryFindInteractable(out Collider hitCollider))
-            return;
+                // remember how the object was set up
+                originalGravity = heldRb.useGravity;
+                originalKinematic = heldRb.isKinematic;
 
-        GameObject objectToPickUp = hitCollider.gameObject;
+                // stop physics while holding it
+                heldRb.useGravity = false;
+                heldRb.isKinematic = true;
 
-        PickUpObject(objectToPickUp);
-    }
+                // move it to the hold point
+                heldObject.transform.SetParent(holdPoint);
+                heldObject.transform.localPosition = Vector3.zero;
+                heldObject.transform.localRotation = Quaternion.identity;
 
-    private void TryDrop()
-    {
-        StopClipping();
-        DropObject();
-    }
-
-    private void PickUpObject(GameObject objectToPickUp)
-    {
-        heldObject = objectToPickUp;
-
-        // Move object to player's holding position
-        heldObject.transform.SetParent(holdPos);
-        heldObject.transform.position = holdPos.position;
-        heldObject.transform.rotation = holdPos.rotation;
-
-        // Stop physics while holding
-        Rigidbody rb = heldObject.GetComponent<Rigidbody>();
-
-        if (rb != null)
-        {
-            rb.isKinematic = true;
-        }
-
-        // Put object on stable layer
-        heldObject.layer = layerNumber;
-
-        // Prevent object from colliding with player
-        Collider objectCollider = heldObject.GetComponent<Collider>();
-        Collider playerCollider = player.GetComponent<Collider>();
-
-        if (objectCollider != null && playerCollider != null)
-        {
-            Physics.IgnoreCollision(objectCollider, playerCollider, true);
+                Debug.Log("Picked up: " + heldObject.name);
+            }
         }
     }
 
-    private void DropObject()
-    {
-        RestorePhysicalState();
 
+    void DropObject()
+    {
         heldObject.transform.SetParent(null);
 
-        Rigidbody rb = heldObject.GetComponent<Rigidbody>();
+        // restore physics
+        heldRb.useGravity = originalGravity;
+        heldRb.isKinematic = originalKinematic;
 
-        if (rb != null)
-        {
-            rb.isKinematic = false;
-        }
+        Debug.Log("Dropped: " + heldObject.name);
 
         heldObject = null;
-    }
-
-    private void RestorePhysicalState()
-    {
-        Collider objectCollider = heldObject.GetComponent<Collider>();
-        Collider playerCollider = player.GetComponent<Collider>();
-
-        if (objectCollider != null && playerCollider != null)
-        {
-            Physics.IgnoreCollision(objectCollider, playerCollider, false);
-        }
-
-        // Restore object's original layer
-        heldObject.layer = 6;
-    }
-
-    private void StopClipping()
-    {
-        if (heldObject == null) return;
-
-        float clipRange = Vector3.Distance(
-            heldObject.transform.position,
-            player.transform.position
-        );
-
-        RaycastHit[] hits;
-
-        hits = Physics.RaycastAll(
-            player.transform.position,
-            player.transform.TransformDirection(Vector3.forward),
-            clipRange
-        );
-
-        if (hits.Length > 1)
-        {
-            heldObject.transform.position =
-                transform.position + new Vector3(0f, -0.5f, 0f);
-        }
+        heldRb = null;
     }
 }
