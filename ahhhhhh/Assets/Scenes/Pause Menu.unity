@@ -362,9 +362,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 971888438}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8edd72ea33ca84c43b6b0cb0e82f28dd, type: 3}
+  m_Script: {fileID: 11500000, guid: 64da5926305e34e4c98d14f691715d09, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
+  m_EditorClassIdentifier: Assembly-CSharp::Button_Transition
 --- !u!1 &1052546524
 GameObject:
   m_ObjectHideFlags: 0
@@ -932,13 +932,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 971888438}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 971888441}
+        m_TargetAssemblyTypeName: Button_Transition, Assembly-CSharp
+        m_MethodName: NextScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

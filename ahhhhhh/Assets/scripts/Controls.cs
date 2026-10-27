@@ -145,6 +145,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Press"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MenuController"",
+                    ""type"": ""Button"",
+                    ""id"": ""1e91da99-42af-4868-ae41-d255289c8769"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -400,6 +409,28 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""PickUp"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8ad77107-ce14-433a-9552-a55a8f724bc4"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MenuController"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3b4e361d-c749-4189-a647-83ce7cf0561c"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";keyboard and mouse"",
+                    ""action"": ""MenuController"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -442,6 +473,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_player_Crouch = m_player.FindAction("Crouch", throwIfNotFound: true);
         m_player_Dialogue = m_player.FindAction("Dialogue", throwIfNotFound: true);
         m_player_PickUp = m_player.FindAction("PickUp", throwIfNotFound: true);
+        m_player_MenuController = m_player.FindAction("MenuController", throwIfNotFound: true);
     }
 
     ~@Controls()
@@ -528,6 +560,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_player_Crouch;
     private readonly InputAction m_player_Dialogue;
     private readonly InputAction m_player_PickUp;
+    private readonly InputAction m_player_MenuController;
     /// <summary>
     /// Provides access to input actions defined in input action map "player".
     /// </summary>
@@ -563,6 +596,10 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "player/PickUp".
         /// </summary>
         public InputAction @PickUp => m_Wrapper.m_player_PickUp;
+        /// <summary>
+        /// Provides access to the underlying input action "player/MenuController".
+        /// </summary>
+        public InputAction @MenuController => m_Wrapper.m_player_MenuController;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -607,6 +644,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @PickUp.started += instance.OnPickUp;
             @PickUp.performed += instance.OnPickUp;
             @PickUp.canceled += instance.OnPickUp;
+            @MenuController.started += instance.OnMenuController;
+            @MenuController.performed += instance.OnMenuController;
+            @MenuController.canceled += instance.OnMenuController;
         }
 
         /// <summary>
@@ -636,6 +676,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @PickUp.started -= instance.OnPickUp;
             @PickUp.performed -= instance.OnPickUp;
             @PickUp.canceled -= instance.OnPickUp;
+            @MenuController.started -= instance.OnMenuController;
+            @MenuController.performed -= instance.OnMenuController;
+            @MenuController.canceled -= instance.OnMenuController;
         }
 
         /// <summary>
@@ -744,5 +787,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnPickUp(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "MenuController" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnMenuController(InputAction.CallbackContext context);
     }
 }

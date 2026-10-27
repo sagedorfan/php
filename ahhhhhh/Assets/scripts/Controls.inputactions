@@ -59,6 +59,15 @@
                     "processors": "",
                     "interactions": "Press",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "MenuController",
+                    "type": "Button",
+                    "id": "1e91da99-42af-4868-ae41-d255289c8769",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -312,6 +321,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "PickUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8ad77107-ce14-433a-9552-a55a8f724bc4",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MenuController",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3b4e361d-c749-4189-a647-83ce7cf0561c",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";keyboard and mouse",
+                    "action": "MenuController",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
