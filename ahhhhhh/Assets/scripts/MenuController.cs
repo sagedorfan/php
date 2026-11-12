@@ -15,7 +15,8 @@ public class MenuController : MonoBehaviour
 
     void Update()
     {
-        if (Keyboard.current.fKey.isPressed)
+        if (Keyboard.current.fKey.isPressed) //old input system
+
         {
             menuCanvas.SetActive(!menuCanvas.activeSelf);
         }
