@@ -1,3 +1,4 @@
+
 using System;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -37,8 +38,10 @@ public class FPController : MonoBehaviour
     private Vector2 lookInput;
     private Vector3 velocity; // Stores the player's current vertical movement, including gravity.
     private float verticalRotation = 0f;
-
-   
+     
+    [Header("ANIMATION SETTINGS")]
+    [Space(5)]
+    public Animator animator;
     
 
     // Awake runs once when the GameObject is first loaded.
@@ -72,6 +75,18 @@ public class FPController : MonoBehaviour
         {
             heldObject.MoveToHoldPoint(holdPoint.position);
         }
+
+        //if (moveInput != null)
+        //{
+        //    animator.SetBool("isWalking", false);
+        //}
+        //else
+        //{
+        //    animator.SetBool("isWalking", true);
+        //}
+
+ 
+
     }
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -104,6 +119,9 @@ public class FPController : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
         // Applies the vertical movement for jumping and falling.
         controller.Move(velocity * Time.deltaTime);
+
+        float movementMagnitude = new Vector2(moveInput.x, moveInput.y).magnitude;
+        animator.SetFloat("Speed", movementMagnitude);
     }
     // Handles the player's camera and body rotation.
     public void HandleLook()
@@ -208,4 +226,14 @@ internal class PickUpObject
     {
         throw new NotImplementedException();
     }
+
+    //public void HandleMovement()
+    //{
+    //    Vector3 move = transform.right * moveInput.x + transform.forward * move.y;
+    //    ControllerColliderHit.Move(move * moveSpeed * Time.deltaTime);
+
+    //    if (controller.inGrounded && velocity.y < 0) AudioVelocityUpdateMode.y = -2f;
+
+
+    //}
 }
