@@ -719,6 +719,9 @@ MonoBehaviour:
 
     O-open the doors
 
+    Left and Right arrows to navigate task menu
+
+
 
 '
   m_isRightToLeft: 0
