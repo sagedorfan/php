@@ -5,6 +5,13 @@ using UnityEngine.InputSystem;
 using static UnityEngine.Rendering.DebugUI;
 public class FPController : MonoBehaviour
 {
+    //Animator animator;
+
+    //[SerializeField] private Animator doorAnimator;
+
+    //public float openSpeed = 2f;
+    //private bool isOpen = false;
+
     [Header("Movement Settings")]
     public float moveSpeed = 5f;
     public float gravity = -9.81f; // Controls the downward force applied to the player.The value is negative because gravity pulls the player down.
@@ -30,6 +37,10 @@ public class FPController : MonoBehaviour
     private Vector2 lookInput;
     private Vector3 velocity; // Stores the player's current vertical movement, including gravity.
     private float verticalRotation = 0f;
+
+   
+    
+
     // Awake runs once when the GameObject is first loaded.
     private void Awake()
     {
@@ -40,6 +51,21 @@ public class FPController : MonoBehaviour
     }
     private void Update()
     {
+        ////Door
+        //if (Input.GetKeyDown(KeyCode.E))
+        //{
+        //    doorAnimator.SetBool("isOpen", true);
+        //    doorAnimator.SetBool("isClosed", false);
+        //}
+        //else
+        //{
+        //    doorAnimator.SetBool("isOpen", false);
+        //    doorAnimator.SetBool("isClosed", true);
+        //}
+
+
+
+
         HandleMovement();
         HandleLook();
         if (heldObject != null)
