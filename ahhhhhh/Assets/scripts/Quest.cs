@@ -65,3 +65,44 @@ public class QuestProgress
 
     public string QuestID => quest.questID;
 }
+public class QuestManager : MonoBehaviour
+{
+    public List<QuestProgress> activeQuests = new List<QuestProgress>();
+    public void StartQuest(Quest quest)
+    {
+        if (activeQuests.Exists(q => q.QuestID == quest.questID))
+        {
+            Debug.LogWarning($"Quest {quest.questName} is already active.");
+            return;
+        }
+        QuestProgress newQuestProgress = new QuestProgress(quest);
+        activeQuests.Add(newQuestProgress);
+        Debug.Log($"Started quest: {quest.questName}");
+    }
+    public void UpdateObjective(string questID, string objectiveID, int amount)
+    {
+        QuestProgress questProgress = activeQuests.Find(q => q.QuestID == questID);
+        if (questProgress == null)
+        {
+            Debug.LogWarning($"Quest with ID {questID} not found.");
+            return;
+        }
+        QuestObjective objective = questProgress.objectives.Find(o => o.objectiveID == objectiveID);
+        if (objective == null)
+        {
+            Debug.LogWarning($"Objective with ID {objectiveID} not found in quest {questID}.");
+            return;
+        }
+        objective.currentAmount += amount;
+        if (objective.currentAmount > objective.requiredAmount)
+        {
+            objective.currentAmount = objective.requiredAmount;
+        }
+        Debug.Log($"Updated objective: {objective.description}, Current Amount: {objective.currentAmount}/{objective.requiredAmount}");
+        if (questProgress.IsCompleted())
+        {
+            Debug.Log($"Quest {questProgress.quest.questName} completed!");
+            // Handle quest completion logic here
+        }
+    }
+}

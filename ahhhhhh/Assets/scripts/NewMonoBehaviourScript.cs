@@ -8,6 +8,6 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     public void pressed()
     {
-        SceneManager.LoadScene("Apartment scene");
+        SceneManager.LoadScene("Office Scene");
     }
 }
