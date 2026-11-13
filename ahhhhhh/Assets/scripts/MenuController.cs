@@ -15,9 +15,11 @@ public class MenuController : MonoBehaviour
 
     void Update()
     {
-        if (Keyboard.current.fKey.isPressed) //old input system
-
+        if (Keyboard.current.fKey.isPressed) 
+            
         {
+            Cursor.visible = !Cursor.visible;
+            Cursor.lockState = Cursor.visible ? CursorLockMode.None : CursorLockMode.Locked;
             menuCanvas.SetActive(!menuCanvas.activeSelf);
         }
     }
